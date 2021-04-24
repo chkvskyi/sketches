@@ -33,7 +33,7 @@ fn model(_app: &App) -> Model {
     for _b in 0..2000 {
         let angle = random_range::<f32>(-180., 180.);
         let d = random_range::<f32>(Z / 8. + CR / 2., H - 60.);
-        let r = random::<f32>();
+        let r = random_range::<f32>(0., 1.);
         let c = if r < 0.33 {
             c2
         } else if r < 0.66 {
@@ -47,10 +47,10 @@ fn model(_app: &App) -> Model {
                 random_range::<f32>(-SPEED, SPEED),
             ),
             pos: vec2(angle.sin() * d, angle.cos() * d),
-            c: c,
+            c,
         });
     }
-    Model { balls: balls }
+    Model { balls }
 }
 
 fn update(_app: &App, model: &mut Model, _update: Update) {
